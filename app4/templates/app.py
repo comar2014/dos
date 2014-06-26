@@ -1,6 +1,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
+import unicodedata
 import funcionalidades
 
 from flask import Flask, redirect, url_for, request, render_template
@@ -10,7 +11,8 @@ app = Flask(__name__)
 #funcionalidades.crea_Tabla_Apartamentos()
 
 @app.route('/')
-def registrarse():
+def registrarse(methods=['POST']):
+       
 	return render_template('face.html')	
 
 @app.route('/mapa')
@@ -70,6 +72,7 @@ def agregar_apartamento():
 @app.route('/consultas', methods=['POST'])
 def consultas():
 
+	funciona= funcionalidades.Base_Datos()
 	titulo_local= "Consultas"
 	mensaje_insercion = 'La consulta ha sido realizada con exito'
 	facilidades = request.form['inputFacilidades']
@@ -79,17 +82,27 @@ def consultas():
 	pOrden= request.form['inputMayor_menor']
 	
 	
+	
 	print (facilidades)
-	funciona= funcionalidades.Base_Datos()
+	print(caracteristicas)
+
 	resu=funciona.busqueda_Apartamentos(facilidades,caracteristicas,ubicacion,precio,pOrden)
-	print(resu)
+	print(funciona.busqueda_Apartamentos(facilidades,caracteristicas,ubicacion,precio,pOrden))
+	funciona.verTodo()
+       
+	contador=0
+	lista=[]
 	
 	
-	return render_template('resultado_insercion.html', titulo = titulo_local, mensaje = mensaje_insercion,lista=resu)
+		
+	
+	
+	return render_template('resultado_insercion.1.html', titulo = titulo_local, mensaje = mensaje_insercion,lista=resu)
 	
 	#return "hola"
 
 if __name__ == '__main__':
 	app.run(debug=True)
     
+
 
