@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"> 
+
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Aplicacion para publicacion y consulta de apartamentos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" media="screen"  />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" media="screen"  />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" media="screen"  />
+    
+    <style type="text/css">
+      
+	  html,
+      body {
+	
+		background-image:url(../static/img/);
+		background-position: center ;
+		background-repeat::no-repeat;
+	        height: 100%;
+	
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+
+        /* Lastly, apply responsive CSS fixes as necessary */
+        @media (max-width: 767px) {
+        #footer {
+			margin-left: -20px;
+			margin-right: -20px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		}
+        
+		
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      #wrap > .container {
+        padding-top: 60px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+      code {
+        font-size: 80%;
+      }
+
+    </style>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" media="screen"/>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+
+</style></head>
+
+  <body>
+
+
+    <!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+
+            <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/inicio"><img style="max-width:40px; margin-top: -9px;" src="../static/img/do-tea-rooms-are-more-comfortable-place-to-stay-1.jpg"> Roomies</a>
+        </div>
+        <div class="navbar-collapse collapse" style="height: 1px;">
+          <ul class="nav navbar-nav">
+            <li><a href="/inicio"><span class="glyphicon glyphicon-home"></span>&nbsp;   Inicio</a></li>
+            <li class="dropdown">
+                  <a href="rest.manager.htm#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span>&nbsp; Consultas<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/consultar/apartamento">Apartamentos</a></li>
+                   </ul>
+            </li><!-- /.dropdown -->
+            <li class="dropdown active">
+                  <a href="rest.manager.htm#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cutlery"></span>&nbsp; Agregar<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/agregar/apartamento">Apartamentos</a></li>
+                   </ul>
+            </li><!-- /.dropdown -->
+                
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+
+      <!-- Begin page content -->
+         <!-- Begin page content -->
+      
+        <h2>Apartamentos</h2>
+        <form class="horizontal" action="/consultas"  method="post">
+<fieldset>
+
+<!-- Form Name -->
+<p></p>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputFacilidades"></label>  
+  <div class="col-md-5">
+  <input id="inputFacilidades" name="inputFacilidades" type="text" placeholder="Facilidades" class="form-control input-md">
+  <span class="help-block">Consulta por facilidades</span>  
+  </div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputCaracteristicas"></label>  
+  <div class="col-md-5">
+  <input id="inputCaracteristicas" name="inputCaracteristicas" type="text" placeholder="Caracteristicas" class="form-control input-md">
+  <span class="help-block">Consulta por caracteristicas</span>  
+  </div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputPrecio"></label>  
+  <div class="col-md-5">
+  <input id="inputPrecio" name="inputPrecio" type="text" placeholder="Precio" class="form-control input-md">
+  <span class="help-block">Consulta por precio</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputUbicacion"></label>  
+  <div class="col-md-5">
+  <input id="inputUbicacion" name="inputUbicacion" type="text" placeholder="Ubicacion" class="form-control input-md">
+  <span class="help-block">Consulta por ubicación</span>  
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputMayor_menor"></label>  
+  <div class="col-md-5">
+  <input id="inputMayor_menor" name="inputMayor_menor" type="text" placeholder="Mayor_menor" class="form-control input-md">
+  <span class="help-block">Mayor ó menor</span>  
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="buttonNuevo"></label>
+  <div class="col-md-4">
+    <button id="buttonNuevo" name="buttonNuevo" class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-upload"></span> Consultar</button>
+  </div>
+</div>
+
+
+</fieldset>
+</form>
+             
+        </div>
+        
+        </div>
+        
+        </p>
+      </div> <!-- Jumbotron -->
+      </div> <!-- container -->
+
+      <div class="well invisible" id="push"></div>
+       
+       <p></p>
+      <p></p>
+      <p></p>
+    </div>
+
+
+    
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+        
+    
+</body></html>

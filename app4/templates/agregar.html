@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en"> 
+
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Aplicacion para publicacion y consulta de apartamentos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+        <!-- Mapa  -->
+    
+       <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAzlTV99n0dvTnAgM220LlvhSXqEBxIKI7tIZ_s3sJHV4FsxVF0xRDoC_915CfX9Y4fquoFXKarDjORA"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+        
+         function load() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"));
+        map.addControl(new GLargeMapControl());
+        map.addControl(new GMapTypeControl());
+        var center = new GLatLng(9.8539039,-83.9095341);
+        map.setCenter(center, 3);
+        map.setMapType(G_HYBRID_MAP);
+   var scale = new GScaleControl(); 
+   map.addControl(scale); 
+        geocoder = new GClientGeocoder();
+        var marker = new GMarker(center, {draggable: true});  
+        map.addOverlay(marker);
+        document.getElementById("lat").innerHTML = center.lat().toFixed(5);
+        document.getElementById("lng").innerHTML = center.lng().toFixed(5);
+
+	  GEvent.addListener(marker, "dragend", function() {
+       var point = marker.getPoint();
+	      map.panTo(point);
+       document.getElementById("lat").innerHTML = point.lat().toFixed(5);
+       document.getElementById("lng").innerHTML = point.lng().toFixed(5);
+        });
+
+
+	 GEvent.addListener(map, "moveend", function() {
+		  map.clearOverlays();
+    var center = map.getCenter();
+		  var marker = new GMarker(center, {draggable: true});
+		  map.addOverlay(marker);
+		  document.getElementById("lat").innerHTML = center.lat().toFixed(5);
+	   document.getElementById("lng").innerHTML = center.lng().toFixed(5);
+
+
+	 GEvent.addListener(marker, "dragend", function() {
+      var point =marker.getPoint();
+	     map.panTo(point);
+      document.getElementById("lat").innerHTML = point.lat().toFixed(5);
+	     document.getElementById("lng").innerHTML = point.lng().toFixed(5);
+        });
+ 
+        });
+
+      }
+    }
+
+	   function showAddress(address) {
+	   var map = new GMap2(document.getElementById("map"));
+       map.addControl(new GLargeMapControl());
+       map.addControl(new GMapTypeControl());
+       if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+		  document.getElementById("lat1").innerHTML = point.lat().toFixed(5);
+	   document.getElementById("lng1").innerHTML = point.lng().toFixed(5);
+		 map.clearOverlays()
+		 map.setCenter(point, 16);
+		 map.setMapType(G_HYBRID_MAP);
+   var scale = new GScaleControl(); 
+   map.addControl(scale); 
+         var marker = new GMarker(point, {draggable: true});  
+		 map.addOverlay(marker);
+
+		GEvent.addListener(marker, "dragend", function() {
+      var pt = marker.getPoint();
+	     map.panTo(pt);
+      document.getElementById("lat1").innerHTML = pt.lat().toFixed(5);
+	     document.getElementById("lng1").innerHTML = pt.lng().toFixed(5);
+        });
+
+
+	 GEvent.addListener(map, "moveend", function() {
+		  map.clearOverlays();
+    var center = map.getCenter();
+		  var marker = new GMarker(center, {draggable: true});
+		  map.addOverlay(marker);
+		  document.getElementById("lat1").innerHTML = center.lat().toFixed(5);
+	   document.getElementById("lng1").innerHTML = center.lng().toFixed(5);
+
+	 GEvent.addListener(marker, "dragend", function() {
+     var pt = marker.getPoint();
+	    map.panTo(pt);
+    document.getElementById("lat1").innerHTML = pt.lat().toFixed(5);
+	   document.getElementById("lng1").innerHTML = pt.lng().toFixed(5);
+        });
+ 
+        });
+
+            }
+          }
+        );
+      }
+    }
+    </script>
+  </head>
+
+    
+    
+    
+    <!-- CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" media="screen"  />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" media="screen"  />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" media="screen"  />
+    
+    <style type="text/css">
+	
+      
+	  html,
+      body {
+		background-image:url(../static/img/fondo3.jpg);
+		background-position:initial;
+		background-repeat::no-repeat;
+	    height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      #wrap > .container {
+        padding-top: 60px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+      code {
+        font-size: 80%;
+      }
+
+    </style>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" media="screen"/>
+
+</style></head>
+
+  <body>
+
+
+    <!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+            <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/inicio"><img style="max-width:40px; margin-top: -9px;" src="../static/img/do-tea-rooms-are-more-comfortable-place-to-stay-1.jpg"> Roomies</a>
+        </div>
+        <div class="navbar-collapse collapse" style="height: 1px;">
+          <ul class="nav navbar-nav">
+            <li><a href="/inicio"><span class="glyphicon glyphicon-home"></span>&nbsp;   Inicio</a></li>
+            <li class="dropdown">
+                  <a href="rest.manager.htm#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span>&nbsp; Consultas<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/consultar/apartamento">Apartamentos</a></li>
+                
+                   </ul>
+            </li><!-- /.dropdown -->
+            <li class="dropdown active">
+                  <a href="rest.manager.htm#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cutlery"></span>&nbsp; Agregar<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/agregar/apartamento">Apartamentos</a></li>
+                   
+                   </ul>
+            </li><!-- /.dropdown -->
+                
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+
+      <!-- Begin page content -->
+      
+<body onload="load()" onunload="GUnload()" >
+<font face="Arial">
+</font>
+  <form action="#" onsubmit="showAddress(this.address.value); return false">
+     <p>        
+      <input type="text" size="50" name="address" value="" />
+      <input type="submit" value="Aceptar" />&nbsp;Ingrese la provincia, cantón o distrito donde se encuentra su apartamento</p>
+    </form>        
+        
+        
+<!-- Form para agregar un Restaurante Nuevo -->
+<p></p>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputNombre_aparta">Nombre del apartamento</label>  
+  <div class="col-md-5">
+  <input id="inputNombre_aparta" name="inputNombre_aparta" type="text" placeholder="Nombre" class="form-control input-md" required="">
+  <span class="help-block">Nombre del apartamento</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputDescripcion">Descripcion</label>  
+  <div class="col-md-5">
+  <input id="inputDescripcion" name="inputDescripcion" type="text" placeholder="Descripcion general" class="form-control input-md" required="">
+  <span class="help-block">Descripcion general</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputFacilidades">Facilidades</label>  
+  <div class="col-md-5">
+  <input id="inputFacilidades" name="inputFacilidades" type="text" placeholder="Facilidades" class="form-control input-md" required="">
+  <span class="help-block">Por ejemplo: TV, luz, agua, internet, etc.</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputCaracteristicas">Caracteristicas</label>  
+  <div class="col-md-5">
+  <input id="inputCaracteristicas" name="inputCaracteristicas" type="text" placeholder="Cracteristicas" class="form-control input-md" required="">
+  <span class="help-block">Por ejemplo: número de cuartos, cochera, etc.</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputUbicacion">Ubicación</label>  
+  <div class="col-md-5">
+  <input id="inputUbicacion" name="inputUbicacion" type="text" placeholder="Ubicacion" class="form-control input-md" required="">
+  <span class="help-block">Direccion exacta</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputPrecio">Precio</label>  
+  <div class="col-md-5">
+  <input id="inputPrecio" name="inputPrecio" type="text" placeholder="Precio" class="form-control input-md" required="">
+  <span class="help-block">Precio del alquiler</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputTelefono">Teléfono</label>  
+  <div class="col-md-5">
+  <input id="inputTelefono" name="inputTelefono" type="text" placeholder="Telephone" class="form-control input-md" required="">
+  <span class="help-block">Teléfono del dueño</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="inputCorreo">Correo electronico</label>  
+  <div class="col-md-5">
+  <input id="inputCorreo" name="inputCorreo" type="text" placeholder="Correo" class="form-control input-md" required="">
+  <span class="help-block">Correo electronico</span>  
+  </div>
+</div>
+    
+    
+
+ <p align="left">
+ 
+ <table  bgcolor="" width="333">
+  <tr>
+      
+ 
+      
+<p><b><font face="Comic Sans MS" size="5">Posicione el lugar en el mapa</font></b></p>
+ </p>
+  <div align="center" id="map" style="width: 300px; height: 300px"><br/></div>
+   </div> 
+     
+          </div> 
+        </div> 
+        </div> 
+      
+        
+        					 
+  <label class="col-md-4 control-label" for="buttonAgregar"></label>
+  <div class="col-md-4">
+    <button id="buttonAgregar" name="buttonAgregar" class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-upload"></span> Agregar</button>
+         </div> 
+        </div> 
+        </div> 
+     
+ <td width="72" align="center"><font color="#1c1c1c"><b>Longitud del apartamento:</b></font></td>
+    <td id="lng1" width="90" align="center" name="lngl" required>
+    <p align="left"></td>
+      
+       <td width="60" align="lert"><font color="#000"><b>Latitud del apartamento:</b></font></td>
+    <td id="lat1" width="90" align="center" name="latl" required>
+    <p align="left"></td>
+           
+
+      
+  </tr>
+        
+</table>
+
+
+      
+
+<!-- Button -->
+
+</fieldset>
+</form>
+
+
+        </div>
+        
+        </div>
+        
+         </p>    
+        
+        <p></p>
+        <p class="lead"></p>
+        
+      </div> <!-- Jumbotron -->
+      </div> <!-- container -->
+
+      <div class="well invisible" id="push">
+      
+       </div>
+               
+  </div>
+    
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    
+    
+</body></html>

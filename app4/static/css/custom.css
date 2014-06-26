@@ -1,0 +1,190 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* Main marketing message and sign up button */
+.jumbotron {
+	background:rgba(0,0,0,.8);
+	background:linear-gradient(to bottom,rgba(0,0,0,.77),rgba(0,0,0,.82));
+	color:rgba(255,255,255,0.8);
+	padding:20px;
+	margin-bottom:860px;
+	border-radius:4px;
+		
+	margin: 80px 0;
+    text-align: center;
+}
+
+.jumbotron h1 {
+	font-size: 48px;
+    line-height: 1;
+	color:#fff;
+	margin-top:0;
+	margin-bottom:20px
+}
+
+.jumbotron h2{
+    margin: 0;     
+    color: #666;
+    padding-top: 90px;
+    font-size: 52px;
+    font-family: "trebuchet ms", sans-serif;    
+}
+
+.jumbotron .lead {
+	font-size: 14px;
+    line-height: 1.25;
+	text-transform:uppercase;
+	font-weight:normal;
+	letter-spacing:2px;
+	padding-right:5px;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.jumbotron .logo{
+	visibility:visible;
+}
+
+@media (max-width:480px){
+.jumbotron #header{border-bottom:0;}
+}
+@media (min-width:480px){
+.jumbotron {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	padding: 20px 40px;
+	margin:50px auto;
+	width:480px;
+	max-width:100%;
+	border-radius:4px;
+}
+
+.jumbotron .logo{
+	visibility:hidden;
+}
+}
+
+.item{
+    background: transparent;    
+    text-align: center;
+    height: 300px !important;
+}
+.carousel{
+    margin-top: 20px;
+}
+
+/* Single Background
+-------------------------------------------------------------- */
+body.single-background{min-height:1200px;}
+.single-background-description{background:rgba(0,0,0,.8);background:linear-gradient(to bottom,rgba(0,0,0,.77),rgba(0,0,0,.82));color:rgba(255,255,255,0.8);padding:20px;margin-bottom:800px;}
+.single-background-description h2{font-size:28px;margin-bottom:20px;margin-top:0;color:#fff;}
+.single-background-description small{display:none;}
+.single-background-description ul{list-style:none;padding:0px;margin-bottom:10px;line-height:24px;}
+.single-background-description ul a{border-bottom:1px dashed rgba(255,255,255,.15);margin-right:2px;text-transform:capitalize;}
+.single-background-description strong{text-transform:uppercase;font-weight:normal;letter-spacing:2px;font-size:11px;padding-right:5px;}
+
+@media (max-width:480px){
+.single-background #header{border-bottom:0;}
+}
+@media (min-width:480px){
+.single-background-description {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	padding: 20px 40px;
+	margin:50px auto;
+	width:480px;
+	max-width:100%;
+	border-radius:4px;
+}
+}
+
+.btn.btn-primary {
+    color: #ffffff;
+    background-color: #666914;
+    background-image: linear-gradient(to bottom, #9598b8, #294980);
+    border-color: #3254ab #3254ab #3254ab;
+	
+}
+.btn.btn-primary:hover {
+    color: #ffffff;
+    background-color: #294980;
+    background-image: linear-gradient(to bottom, #294980, #294980);
+    border-color: #3254ab #3254ab #3254ab;
+}
+
+.btn.btn-consultar {
+    color: #ffffff;
+    background-color: #D9534F;
+    background-image: linear-gradient(to bottom, #ed2b45, #a61221);
+    border-color: #73130d #73130d #73130d;
+}
+.btn.btn-consultar:hover {
+    color: #ffffff;
+    background-color: #a61221;
+    background-image: linear-gradient(to bottom, #a61221, #a61221);
+    border-color: #73130d #73130d #73130d;
+}
+
+.btn.btn-danger {
+    color: #ffffff;
+    background-color: #D9534F;
+    background-image: linear-gradient(to bottom, #ed2b45, #a61221);
+    border-color: #73130d #73130d #73130d;
+	
+}
+.btn.btn-danger:hover {
+    color: #ffffff;
+    background-color: #a61221;
+    background-image: linear-gradient(to bottom, #a61221, #a61221);
+    border-color: #73130d #73130d #73130d;
+}
+
+.typeahead, .tt-query, .tt-hint {
+	border: 2px solid #CCCCCC;
+	border-radius: 8px;
+	font-size: 24px;
+	height: 30px;
+	line-height: 30px;
+	outline: medium none;
+	padding: 8px 12px;
+	width: 396px;
+}
+.typeahead {
+	background-color: #FFFFFF;
+}
+.typeahead:focus {
+	border: 2px solid #0097CF;
+}
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+	color: #999999;
+}
+.tt-dropdown-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 12px;
+	padding: 8px 0;
+	width: 422px;
+}
+.tt-suggestion {
+	font-size: 24px;
+	line-height: 24px;
+	padding: 3px 20px;
+}
+.tt-suggestion.tt-is-under-cursor {
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
+}

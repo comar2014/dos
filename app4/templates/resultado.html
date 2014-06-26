@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"> 
+
+
+<head><meta http-equiv="Content-Type" content="text/html;  charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Aplicacion para publicacion y consulta de apartamentos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" media="screen"  />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" media="screen"  />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" media="screen"  />
+    
+    <style type="text/css">
+
+      
+	  html,
+      body {
+		background-image:url(../static/img/fondo4.jpg);
+		background-position:initial;
+		background-repeat::no-repeat;
+	    height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      footer {
+            color: #666;
+            background: #222;
+            padding: 17px 0 18px 0;
+            border-top: 1px solid #000;
+			width:100%;
+        }
+        footer a {
+            color: #1d97cf;
+						
+        }
+        footer a:hover {
+            color: #efefef;
+			cursor: pointer;
+        }
+
+        /* Lastly, apply responsive CSS fixes as necessary */
+        @media (max-width: 767px) {
+        #footer {
+			margin-left: -20px;
+			margin-right: -20px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		}
+        
+		
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      #wrap > .container {
+        padding-top: 60px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+      code {
+        font-size: 80%;
+      }
+
+    </style>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" media="screen"/>
+
+</style></head>
+
+  <body>
+
+
+    <!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+
+            <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="rest.manager.htm"><img style="max-width:40px; margin-top: -9px;" src="../static/img/do-tea-rooms-are-more-comfortable-place-to-stay-1.jpg"> Roomies</a>
+        </div>
+        <div class="navbar-collapse collapse" style="height: 1px;">
+          <ul class="nav navbar-nav">
+            <li><a href="rest.manager.htm"><span class="glyphicon glyphicon-home"></span>&nbsp;   Inicio</a></li>
+            <li class="dropdown">
+                  <a href="rest.manager.htm#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span>&nbsp; Consultas<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/consultar/apartamento">Apartamentos</a></li>
+                   </ul>
+            </li><!-- /.dropdown -->
+            <li class="dropdown">
+                  <a href="rest.manager.htm#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cutlery"></span>&nbsp; Agregar<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/agregar/apartamento">Apartamentos</a></li>
+                   </ul>
+            </li><!-- /.dropdown -->
+            <li class="active"><a href="">Resultado</a></li>
+                
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+      <!-- Begin page content -->
+      <div class="container">
+        <!-- Jumbotron -->
+      <div class="jumbotron">
+        
+        <!-- Plantilla para mostrar los resultados -->
+        {% block title %}{% endblock %}
+        
+        
+		{% block body %}{% endblock %}
+        
+        <p class="lead">
+        
+        </p>
+        
+               
+        <p class="lead">
+        
+        </p>
+        
+        <p></p>
+        <p><a href="javascript:history.go(-1)" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-info-sign"></span> Atrás</a></p>
+      </div>
+      </div>
+
+      <div id="push">
+           <div class="container">
+           
+           </div>
+      </div>
+    </div>
+
+    
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    
+    
+</body></html>

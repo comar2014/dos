@@ -1,0 +1,14 @@
+{% extends "resultado.html" %}
+{% block title %}
+  <h1>{{ titulo }}</h1>
+{% endblock %}
+{% block body %}
+   {% if nombre != '' %}
+    <div class=container>
+		{% for lista in lista %}
+        	<li><h3>{{ lista }}</h3></li>
+        {% endfor %}
+     </div>
+    {% endif %}
+  <p></p>
+{% endblock %}

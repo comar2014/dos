@@ -1,0 +1,38 @@
+{% extends "resultado.html" %}
+{% block title %}
+<style>
+table,th,td
+{
+border:1px solid black;
+
+}
+</style>
+
+  <h1>{{ titulo }}</h1>
+{% endblock %}
+{% block body %}
+   {% if nombre != '' %}
+    <div class=container>
+		 <table>	 
+			<tr>
+		<th bgcolor=#81f5b2>favoritos</th><th bgcolor=#a2dbff>Nombre</th><th bgcolor=#a2dbff>Descripcion</th><th bgcolor=#a2dbff>Facilidades</th><th bgcolor=#a2dbff>Caracteristicas</th><th bgcolor=#a2dbff>Ubicacion</th><th bgcolor=#a2dbff>Precio</th><th bgcolor=#a2dbff>Telefono</th><th bgcolor=#a2dbff>Correo</th>
+	</tr>	
+			{% for lista in lista %}
+			 
+			<tr>	
+			  <td> <input type="checkbox" name="lista" value="lista">{{ lista }}</td>
+			  <td>{{ lista[1] }}</td>		
+			  <td>{{ lista[2] }}</td>
+			  <td>{{ lista[3] }}</td>
+			  <td>{{ lista[4] }}</td>
+			  <td>{{ lista[5] }}</td>
+			  <td>{{ lista[8] }}</td>
+			  <td>{{ lista[9] }}</td> 
+		</tr>		
+{% endfor %}
+		</table>
+        
+     </div>
+    {% endif %}
+  <p></p>
+{% endblock %}
